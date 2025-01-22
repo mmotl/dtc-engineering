@@ -169,3 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+.DS_Store
+module01/docker/ny_taxi_postgres_data/
+ny_taxi_postgres_data/
+data/
