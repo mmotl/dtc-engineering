@@ -57,6 +57,10 @@ docker run -it \
   ## postgres and pgadmin in docker network
 
 ```zsh
+docker network create pg-network
+```
+
+```zsh
 docker run -it \
   -e POSTGRES_USER="root" \
   -e POSTGRES_PASSWORD="root" \
@@ -74,5 +78,26 @@ docker run -it \
   -e PGADMIN_DEFAULT_PASSWORD="root" \
   -p 8080:80 \
   --network=pg-network \
-  --name pgadmin-2 \
+  --name pgadmin \
   dpage/pgadmin4
+```
+
+```zsh
+docker run -it \
+  -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
+  -e PGADMIN_DEFAULT_PASSWORD="root" \
+  -p 8090:90 \
+  dbeaver/cloudbeaver
+  --network=pg-network \
+  --name dbeaver \
+```
+
+## docker compose
+
+The YAML runs the two images.  
+By being spun up via docker-compose, they're in a network, so this does not need to be specified.
+
+this command executes the docker compose yml
+```zsh
+docker-compose up
+```
