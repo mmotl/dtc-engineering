@@ -92,6 +92,10 @@ docker run -it \
   --name dbeaver \
 ```
 
+## ingestion script
+tbd!  
+[YouTube link 1.2.5](https://www.youtube.com/watch?v=B1WwATwf-vY&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=8&pp=iAQB)
+
 ## docker compose
 
 create a docker-compose.yml:  
@@ -121,7 +125,10 @@ services:
 The YAML runs the two images.  
 By being spun up via docker-compose, they're in a network, so this does not need to be specified.
 
-this command executes the docker compose yml
+this command executes the docker compose yml to run the container - or closes the container - or run it detached (getting the terminal prompt back)  
+
 ```zsh
 docker-compose up
+docker-compose down
+docker-compose up -d
 ```
