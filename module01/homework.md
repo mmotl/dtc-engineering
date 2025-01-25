@@ -72,6 +72,7 @@ volumes:
 - db:5433
 - postgres:5432
 - db:5432
+> db:5432
 
 If there are more than one answers, select only one of them
 
@@ -124,6 +125,7 @@ Tip: For every day, we only care about one single trip with the longest distance
 - 2019-10-24
 - 2019-10-26
 - 2019-10-31
+> 2019-10-31
 
 
 ## Question 5. Three biggest pickup zones
@@ -137,7 +139,7 @@ Consider only `lpep_pickup_datetime` when filtering by date.
 - East Harlem North, Morningside Heights
 - Morningside Heights, Astoria Park, East Harlem South
 - Bedford, East Harlem North, Astoria Park
-
+> East Harlem North, East Harlem South, Morningside Heights
 
 ## Question 6. Largest tip
 
@@ -153,6 +155,7 @@ We need the name of the zone, not the ID.
 - JFK Airport
 - East Harlem North
 - East Harlem South
+> JFK Airport
 
 
 ## Terraform
