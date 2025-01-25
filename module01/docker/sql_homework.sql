@@ -5,11 +5,29 @@ LIMIT 5;
 SELECT count(*)
 FROM green_taxi_trips;
 
--- Question 3. Trip Segmentation Count
+/*
+## Question 3. Trip Segmentation Count
+
+During the period of October 1st 2019 (inclusive) and November 1st 2019 (exclusive), how many trips, **respectively**, happened:
+1. Up to 1 mile
+2. In between 1 (exclusive) and 3 miles (inclusive),
+3. In between 3 (exclusive) and 7 miles (inclusive),
+4. In between 7 (exclusive) and 10 miles (inclusive),
+5. Over 10 miles 
+
+Answers:
+
+- 104,802;  197,670;  110,612;  27,831;  35,281
+- 104,802;  198,924;  109,603;  27,678;  35,189
+- 104,793;  201,407;  110,612;  27,831;  35,281
+- 104,793;  202,661;  109,603;  27,678;  35,189
+- 104,838;  199,013;  109,645;  27,688;  35,202
+*/
+
 -- my query    
  SELECT
- 		CASE
-		WHEN trip_distance <= 1 THEN 'a_1_mile'
+	CASE
+	WHEN trip_distance <= 1 THEN 'a_1_mile'
     WHEN trip_distance > 1 AND trip_distance <= 3 THEN 'b_1_to_3_miles'
     WHEN trip_distance > 3 AND trip_distance <= 7 THEN 'c_3_to_7_miles'
     WHEN trip_distance > 7 AND trip_distance <= 10 THEN 'd_7_to_10_miles'
@@ -18,7 +36,7 @@ FROM green_taxi_trips;
     count(*) AS trips_count
 FROM green_taxi_trips
 WHERE CAST(lpep_pickup_datetime AS DATE) >= '2019-10-01'
-  AND CAST(lpep_pickup_datetime AS DATE) < '2019-11-01' 
+  AND CAST(lpep_dropoff_datetime AS DATE) < '2019-11-01' 
 GROUP BY trips_cat;
 
 /*
