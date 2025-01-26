@@ -36,14 +36,6 @@ docker run -it \
   postgres:13
 ```
 
-## terraform
-- install terraform via brew:  
-  *(might require to update xcode dev tools)*
-```zsh
-brew tap hashicorp/tap
-brew install hashicorp/tap/terraform
-```
-
 ## pgAdmnin/docker
 
 ```zsh
@@ -132,3 +124,25 @@ docker-compose up
 docker-compose down
 docker-compose up -d
 ```
+
+## terraform
+- install terraform via brew:  
+  *(might require to update xcode dev tools)*
+```zsh
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+```
+
+to format terraform files, run from the cli:
+```zsh
+terraform fmt
+```
+
+steps:
+```zsh
+terraform init
+terraform plan
+terraform apply
+terraform destroy  
+```*
+the file **terraform.tfstate** shows in a json file what the status if the structure.

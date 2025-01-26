@@ -183,6 +183,7 @@ Answers:
 - terraform init, terraform run -auto-approve, terraform destroy
 - terraform init, terraform apply -auto-approve, terraform destroy
 - terraform import, terraform apply -y, terraform rm
+> terraform init, terraform apply -auto-approve, terraform destroy
 
 
 ## Submitting the solutions
