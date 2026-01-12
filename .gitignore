@@ -177,6 +177,7 @@ data/
 .env
 keys/
 *.json
+.gcp_vm_info
 
 # terraform
 # .tfstate files
