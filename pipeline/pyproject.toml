@@ -17,4 +17,5 @@ dependencies = [
 dev = [
     "jupyter>=1.1.1",
     "pgcli>=4.3.0",
+    "pre-commit>=4.5.1",
 ]
