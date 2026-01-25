@@ -73,7 +73,8 @@ volumes:
 
 Answer:
 ```zsh
-postgres:5433
+postgres:5432
+db:5432
 ```
 
 If multiple answers are correct, select any 
@@ -239,6 +240,10 @@ Answers:
 - terraform init, terraform apply -auto-approve, terraform destroy
 - terraform import, terraform apply -y, terraform rm
 
+Answer:
+```zsh
+- terraform init, terraform run -auto-approve, terraform destroy
+```
 
 ## Submitting the solutions
 
