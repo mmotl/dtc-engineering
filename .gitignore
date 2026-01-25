@@ -1,5 +1,7 @@
 .parquet
 .DS_Store
+.env
+.venv/
 
 
 # Byte-compiled / optimized / DLL files

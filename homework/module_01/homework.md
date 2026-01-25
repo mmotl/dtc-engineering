@@ -65,12 +65,16 @@ volumes:
   vol-pgadmin_data:
     name: vol-pgadmin_data
 ```
-
 - postgres:5433
 - localhost:5432
 - db:5433
 - postgres:5432
 - db:5432
+
+Answer:
+```zsh
+postgres:5433
+```
 
 If multiple answers are correct, select any 
 
@@ -98,7 +102,20 @@ For the trips in November 2025 (lpep_pickup_datetime between '2025-11-01' and '2
 - 8,254
 - 8,421
 
+Answer:
+```sql
+SELECT *
+FROM taxi_zone_lookup;
 
+SELECT count(*)
+FROM
+    "green_tripdata_2025-11" trip
+WHERE
+    trip.lpep_pickup_datetime >= '2025-11-01' 
+    AND trip.lpep_pickup_datetime < '2025-12-01'
+    AND trip.trip_distance <= 1;
+-- 8007
+```
 ## Question 4. Longest trip for each day
 
 Which was the pick up day with the longest trip distance? Only consider trips with `trip_distance` less than 100 miles (to exclude data errors).
@@ -110,6 +127,31 @@ Use the pick up time for your calculations.
 - 2025-11-23
 - 2025-11-25
 
+Answer:
+```sql
+SELECT count(*)
+FROM
+    "green_tripdata_2025-11" trip
+WHERE
+    trip.lpep_pickup_datetime >= '2025-11-01' 
+    AND trip.lpep_pickup_datetime < '2025-12-01'
+    AND trip.trip_distance <= 1;
+
+SELECT
+    CAST(trip.lpep_pickup_datetime AS DATE) AS pickup_day,
+    MAX(trip.trip_distance) AS max_dist
+FROM
+    "green_tripdata_2025-11" trip
+WHERE
+    trip.trip_distance < 100
+GROUP BY
+    pickup_day
+ORDER BY
+    max_dist DESC
+LIMIT 1;
+
+-- 2025-11-14
+```
 
 ## Question 5. Biggest pickup zone
 
@@ -119,6 +161,25 @@ Which was the pickup zone with the largest `total_amount` (sum of all trips) on 
 - East Harlem South
 - Morningside Heights
 - Forest Hills
+
+```sql
+SELECT
+    zone."Zone",
+    SUM(trip.total_amount) AS sum_total_amount
+FROM
+    "green_tripdata_2025-11" trip
+JOIN
+    taxi_zone_lookup zone ON trip."PULocationID" = zone."LocationID"
+WHERE
+    CAST(trip.lpep_pickup_datetime AS DATE) = '2025-11-18'
+GROUP BY
+    zone."Zone"
+ORDER BY
+    sum_total_amount DESC
+LIMIT 1;
+
+-- East Harlem North	9281.92
+```
 
 
 ## Question 6. Largest tip
@@ -132,6 +193,26 @@ Note: it's `tip` , not `trip`. We need the name of the zone, not the ID.
 - East Harlem North
 - LaGuardia Airport
 
+```sql
+SELECT
+    zone_dropoff."Zone" AS dropoff_zone,
+    trip.tip_amount
+FROM
+    "green_tripdata_2025-11" trip
+JOIN 
+    taxi_zone_lookup zone_pickup ON trip."PULocationID" = zone_pickup."LocationID"
+JOIN 
+    taxi_zone_lookup zone_dropoff ON trip."DOLocationID" = zone_dropoff."LocationID"
+WHERE
+    zone_pickup."Zone" = 'East Harlem North'
+    AND trip.lpep_pickup_datetime >= '2025-11-01' 
+    AND trip.lpep_pickup_datetime < '2025-12-01'
+ORDER BY
+    trip.tip_amount DESC
+LIMIT 1;
+
+-- Yorkville West	81.89
+```
 
 ## Terraform
 
