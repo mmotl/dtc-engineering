@@ -2,23 +2,22 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "5.6.0"
+      version = "4.51.0"
     }
   }
 }
 
 provider "google" {
-  credentials = file(var.credentials)
-  project     = var.project
+  credentials = var.credentials
+  project     = var.project_id
   region      = var.region
 }
 
 
 resource "google_storage_bucket" "demo-bucket" {
-  name          = var.gcs_bucket_name
-  location      = var.location
+  name          = "tough-processor-312510-bucket"
+  location      = var.bucket_location
   force_destroy = true
-
 
   lifecycle_rule {
     condition {
@@ -31,8 +30,8 @@ resource "google_storage_bucket" "demo-bucket" {
 }
 
 
-
-resource "google_bigquery_dataset" "demo_dataset" {
-  dataset_id = var.bq_dataset_name
-  location   = var.location
-}
+# resource "google_bigquery_dataset" "dataset" {
+#   dataset_id = "<The Dataset Name You Want to Use>"
+#   project    = "<Your Project ID>"
+#   location   = "US"
+# }

@@ -1,5 +1,7 @@
 # dtc-engineering
 
+### 01
+#### Docker
 ```zsh 
 docker ps -a
 ```
@@ -55,3 +57,5 @@ docker run -it --rm \
   --month=1 \
   --chunksize=100000
   ```
+
+  #### Terrafrom
