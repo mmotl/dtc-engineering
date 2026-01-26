@@ -8,11 +8,10 @@ terraform {
 }
 
 provider "google" {
-  credentials = var.credentials
+  credentials = file(var.credentials)
   project     = var.project_id
   region      = var.region
 }
-
 
 resource "google_storage_bucket" "demo-bucket" {
   name          = "tough-processor-312510-bucket"
@@ -28,7 +27,6 @@ resource "google_storage_bucket" "demo-bucket" {
     }
   }
 }
-
 
 # resource "google_bigquery_dataset" "dataset" {
 #   dataset_id = "<The Dataset Name You Want to Use>"
