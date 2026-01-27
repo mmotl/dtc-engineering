@@ -1,3 +1,4 @@
+name: zoomcamp_project
 services:
   pgdatabase:
     image: postgres:18
