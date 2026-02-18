@@ -50,9 +50,9 @@ tasks:
       type: io.kestra.plugin.core.runner.Process
     commands:
       - echo "File size information for {{render(vars.file)}}:"
-      - ls -lh {{render(vars.file)}}
+      - ls -lh {{render(vars.data)}}
       - echo "Total size:"
-      - du -h {{render(vars.file)}}
+      - du -h {{render(vars.data)}}
 
   - id: if_yellow_taxi
     type: io.kestra.plugin.core.flow.If

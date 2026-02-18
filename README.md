@@ -59,3 +59,10 @@ docker run -it --rm \
   ```
 
   #### Terrafrom
+
+  #### Kestra
+
+  #### useful things
+  ```zsh
+  uv run yt-dlp youtube_url
+  ```
