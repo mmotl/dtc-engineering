@@ -13,7 +13,7 @@ sources:
       {%- else -%}
         prod
       {%- endif -%}
-    {# For DuckDB (local): database = taxi_rides_ny (matches .duckdb filename), schema = prod #}
+    # For DuckDB (local): database = taxi_rides_ny (matches .duckdb filename), schema = prod
     freshness:
       warn_after: {count: 24, period: hour}
       error_after: {count: 48, period: hour}
@@ -103,3 +103,22 @@ sources:
             description: Improvement surcharge
           - name: total_amount
             description: Total amount charged
+
+      - name: fhv_tripdata
+        description: Raw For-Hire Vehicle (FHV) trip records (2019)
+        loaded_at_field: pickup_datetime
+        columns:
+          - name: dispatching_base_num
+            description: TLC base license number of the base that dispatched the trip
+          - name: pickup_datetime
+            description: Date and time when the trip began
+          - name: dropOff_datetime
+            description: Date and time when the trip ended
+          - name: PUlocationID
+            description: TLC Taxi Zone where the trip began
+          - name: DOlocationID
+            description: TLC Taxi Zone where the trip ended
+          - name: SR_Flag
+            description: Indicates if the trip was part of a shared ride (1 = shared)
+          - name: Affiliated_base_number
+            description: TLC base license number of the affiliated base
